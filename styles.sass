@@ -1,10 +1,15 @@
 @font-face 
-  font-family: "Montserrat"
-  src: url("../fonts/Montserrat-Regular.ttf")
+  font-family: 'Montserrat'
+  src: url('../fonts/Montserrat-Regular.ttf') format('truetype')
 
+$font-montserrat: 'Montserrat', sans-serif
     
 *
     font-family: Arial
+
+body
+    cursor: url('images/cursor2.png'), auto
+
 
 $green: #0E9A0B
 $blue: #0D274D
@@ -14,13 +19,59 @@ $blue-light: #00BCEB
     border: 1px solid black
     width: 928px
     margin: auto
-    display: flex
-    justify-content: space-evenly
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-template-rows: 1fr
+    grid-column-gap: 0px
+    grid-row-gap: 0px
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.5)
+    .card
+        display: grid
+        grid-template-rows: 50px 2fr 1fr 70px
+        align-items: center
+        border-right: 1px solid black
+        &:last-child
+            border-right: none
+        [data-card="1"]
+            align-self: start
+            padding: 20px 0 0 0
+            display: flex
+            flex-direction: column
+            height: 100%
+            .price 
+                margin-top: auto 
+                margin-bottom: auto
+                text-align: center
+                h3,p
+                    margin: 0
+                h3
+                    font-weight: 700
+                    font-size: 15px
+                    line-height: 21px
+                    padding: 3px 0 
+                p
+                    padding: 5px 0 15px
+
+                .colortext
+                    color: $green
+                    font-weight: 900
+                    font-size: 20px
+                    line-height: 26px
+                    text-align: center
+            
+        [data-card="2"]
+            align-self: start
+        hr
+            background-color: $blue-light
+            width: 238px
+            border: 1px solid $blue-light
+
+.checkmark, .price, .size, [data-list]
+    margin: 0 20px
 
 .checkmark
     position: relative
-    padding-left: 30px
+    padding-left: 20px
     margin-bottom: 10px
     font-weight: 400
     font-size: 15px
@@ -32,28 +83,54 @@ $blue-light: #00BCEB
     &::after
         content: ""
         position: absolute
-        left: 15px
-        top: -10px
-        width: 10px
-        height: 25px
+        left: -15px
+        top: -5px
+        width: 7px
+        height: 19px
         border: solid $green
-        border-width: 0 5px 5px 0
+        border-width: 0 3px 3px 0
         transform: rotate(45deg)
         
 .head
     background-color: $blue
     color: white
-    margin: auto
+    margin: 0
     text-align: center
-    font-family: Montserrat
-    font-weight: 700
+    font-family: $font-montserrat
+    font-weight: 600
     font-size: 16px
-    leading-trim: NONE
     line-height: 22px
-    letter-spacing: 0%
-    padding: 10px
+    padding: 13px
+    height: -webkit-fill-available
+    border-right: 1px solid #FFFFFF33
+    margin-right: -1px
 
 
+.size
+    display: grid
+    grid-template-columns: 1fr 1fr
+    p 
+        position: relative
+        padding-left: 20px
+        margin-left: 0
+        padding: 0 0 0 20px
+        margin: 5px 0px
+        text-decoration: underline
+        &:hover
+            text-decoration: none
+            color: $blue-light
+            cursor: url('images/cursor3.png') 32 32, pointer
+        &::before 
+            content: ""
+            position: absolute
+            left: 0px
+            top: 50%
+            transform: translateY(-50%)
+            width: 9px
+            height: 15px
+            background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 9 15" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v15l9-7.5z" fill="%2300BCEB"/></svg>')
+            background-repeat: no-repeat
+        
 button
     box-shadow: 0 2px 5px -1px rgba(0, 0, 0, 0.5)
     background-color: $blue-light
@@ -63,6 +140,27 @@ button
     padding: 10px 13px
     font-weight: 700
     font-size: 18px
-    leading-trim: NONE
     line-height: 21px
-    letter-spacing: 0%
+    margin: 15px
+    cursor: url('images/cursor2.png'), auto
+    &:hover
+        box-shadow: 0 6px 5px -1px rgba(0, 0, 0, 0.3)
+
+
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 928px) 
+  .container 
+    width: 100%
+    grid-template-columns: 1fr
+    grid-template-rows: repeat(3, 1fr)
+  
+  
+  .card 
+    border-right: none !important
+    border-bottom: 1px solid black
+    &:last-child 
+        border-bottom: none
+    [data-card="2"] hr 
+    width: 100%
+  
